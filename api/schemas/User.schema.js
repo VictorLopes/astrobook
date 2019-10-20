@@ -5,6 +5,7 @@ var timestamps = require('mongoose-timestamp');
 var userSchema = new Schema({
   name: String,
   lastNamse: String,
+  nickname: String,
   email: String,
   password: String,
   profilePhoto: String

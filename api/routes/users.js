@@ -2,23 +2,49 @@ var express = require('express');
 var router = express.Router();
 var UserModel = require('../model/User.model');
 
+var user = new UserModel();
+
 /* GET users listing. */
 router.get('/', function (req, res, next) {
-
-  let user = new UserModel();
-  user.insert({
-    name: 'Teste',
-    lastName: 'Teste2',
-    email: 'teste@teste.com',
-    password: '123',
-    profilePhoto: 'exemplo.jpg'
-  });
-  
-  res.send('Ok');
-
-  /* userSchema.methods.findSimilarTypes = function (cb) {
-    return this.model('Animal').find({ type: this.type }, cb);
-  }; */
+  res.send('/');
 });
+
+
+/**
+ * ENDPOINT: localhost:3000/users/insert
+ * POST: Insert a new user.
+ * @example
+ {
+   "name": "Test",
+   "lastName": "Test2",
+   "nickname": "Testal",
+   "email": "test@test.com",
+   "password": "123",
+   "profilePhoto": "example.jpg"
+ }
+ */
+router.post('/insert', async (req, res, next) => {
+  let body =  req.body;
+  let result = await user.insert(body);
+  res.json(result);
+});
+
+/**
+ * ENDPOINT: localhost:3000/users/post
+ * POST: Makes login. (nickname or email and password)
+ * @example
+ {
+   "username": "Test",
+   "password": "1234"
+ }
+ */
+router.post('/login', async (req, res, next) => {
+  let body =  req.body;
+  let result = await user.login(body);
+  res.json(result);
+});
+
+
+
 
 module.exports = router;
