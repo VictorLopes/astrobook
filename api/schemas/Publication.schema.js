@@ -6,7 +6,11 @@ var publicationSchema = new Schema({
   title: String,
   description: String,
   cover: String,
-  photos: [{type: String}]
+  photos: [{ type: String }],
+  comments: [new Schema({
+    user: String,
+    message: String
+  })]
 });
 
 publicationSchema.plugin(timestamps);

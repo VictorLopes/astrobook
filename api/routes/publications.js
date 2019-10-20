@@ -17,7 +17,8 @@ router.get('/', async(req, res, next) => {
    "title": "Test",
    "description": "Test2",
    "cover": "Testal.png",
-   "photos": ['photo1.png', 'photo2.png', 'photo3.png']
+   "photos": ["mitchell-luo-GjwDantzwu0-unsplash.jpg"],
+   "comments": [{"user": "Adrian", "message": "Hello"}, {"user": "Beatrice", "message": "Hi"}]
  }
  */
 router.post('/insert', async (req, res, next) => {

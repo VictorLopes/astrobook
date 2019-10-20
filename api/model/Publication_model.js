@@ -14,13 +14,7 @@ module.exports = class Publication {
 
     insert(info) {
         return new Promise((resolve, reject) => {
-            let { title, description, cover, photos } = info;
-            let publication = new PublicationSchema({
-                title,
-                description,
-                cover,
-                photos
-            });
+            let publication = new PublicationSchema(info);
 
             publication.save((err, result) => {
                 if (err) reject('Error while saving publication in database!');
