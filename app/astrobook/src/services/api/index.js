@@ -10,7 +10,8 @@ export const callApi = (call) => {
         params = {},
         data = {},
         headers = {},
-        showJSON = false
+        showJSON = false,
+        title = ''
     } = call
 
     let url = config.url + endpoint
@@ -21,13 +22,13 @@ export const callApi = (call) => {
     console.log(`[${title} - CALL API COMPLETE]`, { headers, method, url, params, data });
 
     axios.interceptors.response
-    .use(function (response) {
-        console.log(`${title} - RESPONSE`, response)
-        return response;
-    }, function (error) {
-        console.log(`${title} - ERROR`, error)
-        return Promise.reject(error);
-    })
+        .use(function (response) {
+            console.log(`${title} - RESPONSE`, response)
+            return response;
+        }, function (error) {
+            console.log(`${title} - ERROR`, error)
+            return Promise.reject(error);
+        })
 
     if (showJSON) {
         console.log(`[${title} - CALL API JSON DATA]`, JSON.stringify(data))

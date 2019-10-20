@@ -4,10 +4,12 @@ import {
     View,
     ScrollView,
     KeyboardAvoidingView,
-    Platform
+    Platform,
+    Alert
 } from 'react-native'
 
 import { MaskService } from 'react-native-masked-text';
+import { withNavigation } from 'react-navigation'
 
 import OutlineButton from '@components/OutlineButton'
 import Header from '@components/Header'
@@ -34,17 +36,10 @@ class EditProfile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            avatarSource: { uri: props.user.photo },
-            name: (props.user.full_name) ? props.user.full_name : '',
-            phone: (props.user.phone) ? props.user.phone : '',
-            cpf: (props.user.cpf) ? props.user.cpf : '',
-            // email: (props.user.email) ? props.user.email : '',
-            zipcode: (props.user.zipcode) ? props.user.zipcode : '',
-            address: (props.user.street) ? props.user.street : '',
-            complement: (props.user.complement) ? props.user.complement : '',
-            district: (props.user.district) ? props.user.district : '',
-            city: (props.user.city) ? props.user.city : '',
-            state: (props.user.state) ? props.user.state : '',
+            avatarSource: { uri: props.user.profilePhoto },
+            name: (props.user.name) ? props.user.name : '',
+            email: (props.user.email) ? props.user.email : '',
+            phone: '(75) 99251-1349'
         }
     }
 
@@ -54,9 +49,9 @@ class EditProfile extends Component {
 
     static getDerivedStateFromProps(props, state) {
         if (props.user) {
-            state.avatarSource = { uri: props.user.photo }
+            state.avatarSource = { uri: props.user.profilePhoto }
         }
-        
+
         return state;
     }
     _onCpfChange = (cpf) => {
@@ -73,7 +68,7 @@ class EditProfile extends Component {
         this.setState({
             zipcode: MaskService.toMask('zip-code', zipcode)
         });
-        
+
         let zipcodeInfo = await searchCep(zipcode);
 
         this.setState({
@@ -118,63 +113,65 @@ class EditProfile extends Component {
     }
 
     _edit = () => {
-        const { name, phone, cpf } = this.state
+        this.props.navigation.goBack()
+        Alert.alert('Perfil atualizado com sucesso!')
+        // const { name, phone, cpf } = this.state
 
-        if (!name)
-            return Toast.show('Preencha o seu nome');
+        // if (!name)
+        //     return Toast.show('Preencha o seu nome');
 
-        if (!cpf)
-            return Toast.show('Preencha o seu cpf');
+        // if (!cpf)
+        //     return Toast.show('Preencha o seu cpf');
 
-        if (!phone)
-            return Toast.show('Preencha o seu número de telefone');
+        // if (!phone)
+        //     return Toast.show('Preencha o seu número de telefone');
 
-        let arrayFullName = this.state.name.split(' ')
-        let firstName = arrayFullName[0]
-        let surname;
+        // let arrayFullName = this.state.name.split(' ')
+        // let firstName = arrayFullName[0]
+        // let surname;
 
-        arrayFullName.map((item, i) => {
-            if (i !== 0) {
-                if (i === 1) {
-                    surname = `${item} `
-                } else {
-                    surname = surname + `${item} `
-                }
-            }
-        })
+        // arrayFullName.map((item, i) => {
+        //     if (i !== 0) {
+        //         if (i === 1) {
+        //             surname = `${item} `
+        //         } else {
+        //             surname = surname + `${item} `
+        //         }
+        //     }
+        // })
 
-        const payload = {
-            surname,
-            name: firstName,
-            address: `${this.state.address}, ${this.state.city}, ${this.state.state}`,
-            // email: this.state.email,
-            cpf: this.state.cpf,
-            phone: this.state.phone,
-            zipcode: this.state.zipcode,
-            complement: this.state.complement,
-            district: this.state.district,
-            city: this.state.city,
-            state: this.state.state,
-            street: this.state.address
-        };
-        
-        this.props.editProfile(payload);
+        // const payload = {
+        //     surname,
+        //     name: firstName,
+        //     address: `${this.state.address}, ${this.state.city}, ${this.state.state}`,
+        //     // email: this.state.email,
+        //     cpf: this.state.cpf,
+        //     phone: this.state.phone,
+        //     zipcode: this.state.zipcode,
+        //     complement: this.state.complement,
+        //     district: this.state.district,
+        //     city: this.state.city,
+        //     state: this.state.state,
+        //     street: this.state.address
+        // };
+
+        // this.props.editProfile(payload);
     }
 
     render() {
         return (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" enabled>
+                <MainHeader
+                    navigation={this.props.navigation}
+                    title='Editar Perfil'
+                    backButton
+                />
 
                 <ScrollView style={{
                     flex: 1,
                     backgroundColor: 'rgb(248, 248, 248)',
 
                 }}>
-                    <Header
-                        clear={() => console.log('Editar Perfil clear')}
-                        title='Editar Perfil'
-                        backButton
-                    />
 
                     <View style={{
                         backgroundColor: 'rgb(242, 243, 244)',
@@ -191,14 +188,9 @@ class EditProfile extends Component {
                                 color: '#383A3C',
                                 paddingBottom: 4
                             }}>
-                                {(this.props.user) ? this.props.user.full_name : 'usuario'}
+                                {(this.props.user) ? this.props.user.name : 'usuario'}
                             </Text>
-                            <Text style={{
-                                fontSize: 15,
-                                color: '#A2A2A2'
-                            }}>
-                                {(this.props.user) ? this.props.user.profession : 'profissao'}
-                            </Text>
+
                         </View>
                         <View style={{
                             paddingTop: 24,
@@ -277,7 +269,7 @@ class EditProfile extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user.data,
+        user: state.user.user,
         profilePhotoLoading: state.user.profilePhotoLoading,
         editProfileLoading: state.user.editProfileLoading
     }
@@ -301,4 +293,4 @@ const mapDispatchToProps = dispatch => ({
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile)
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(EditProfile))

@@ -73,7 +73,7 @@ class FinderProfiles extends Component {
     navigateToProfileView = (uid) => {
         this.props.getProfileView(uid)
         this.props.getClubsOfProfileView(uid)
-        this.props.getIdOfRelationship(uid, this.props.user.user_uid)
+        // this.props.getIdOfRelationship(uid, this.props.user.user_uid)
 
         // Navigate to profile view
         this.props.navigation.navigate('ProfileView');
@@ -126,7 +126,7 @@ class FinderProfiles extends Component {
                                         subtitle={user.profession ? user.profession : ''}
                                         source={user.photo ? { uri: user.photo } : IMAGES.AVATAR}
                                         grayBackground={true}
-                                        onPress={() => this.navigateToProfileView(user.user_uid)}
+                                    // onPress={() => this.navigateToProfileView(user.user_uid)}
                                     />
                                 )
                             })

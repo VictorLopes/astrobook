@@ -1,4 +1,4 @@
 export default {
     token: '',
-    url: '',
+    url: 'http://10.3.120.115:3000',
 }

@@ -79,29 +79,18 @@ export default AvatarProfile = ({ deleteMode = false, ...props }) => {
               justifyContent: 'center',
               alignItems: 'center'
             }}>
-
-              {props.source && (
-                <FitImage
-                  source={props.source}
-                  style={{
-                    width: 68,
-                    height: 68,
-                    borderRadius: 34,
-                    borderColor: '#fff',
-                    borderWidth: 2,
-                  }}
-                  borderRadius={34}
-                />
+              <FitImage
+                source={{ uri: (props.source) ? props.source : 'http://agendamentosfpc.2rm.eb.mil.br/img/sem-imagem-avatar.png' }}
+                style={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: 20,
+                  borderColor: '#fff',
+                  borderWidth: 2
+                }}
+                borderRadius={20}
+              />
               )}
-              {!props.source && (
-                <Icon
-                  type='material-community'
-                  name='camera-outline'
-                  color={COLORS.DEEP_GRAY_TEXT}
-                  size={40}
-                />
-              )}
-
             </View>
           )
           //   {

@@ -33,7 +33,7 @@ const ButtonPrimary = ({ buttonStyle, leftIcon, ...props }) => {
       }}
       loading={props.loading}
       disabled={props.disabled || props.loading}
-      loadingProps={{ color: '#000', size: 'large' }}
+      loadingProps={{ color: '#FFF', size: 'large' }}
       disabledStyle={{
         backgroundColor: props.buttonBackgroundColor,
         opacity: 0.7

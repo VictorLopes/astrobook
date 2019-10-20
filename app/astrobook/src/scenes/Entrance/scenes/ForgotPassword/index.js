@@ -12,7 +12,8 @@ import {
   StyleSheet,
   Platform,
   ImageBackground,
-  Dimensions
+  Dimensions,
+  ScrollView
 } from 'react-native';
 
 import Toast from 'react-native-root-toast'
@@ -44,87 +45,108 @@ class ForgotPassword extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <ImageBackground
-          source={IMAGES.SPLASH_BACKGROUND}
-          style={{
-            width: Dimensions.get('screen').width,
-            height: Dimensions.get('screen').height,
-            backgroundColor: '#000',
-            opacity: 0.95,
-            position: 'absolute',
-          }}
+      <View style={{ flex: 1, backgroundColor: '#dedede' }}>
+        <StatusBar
+          barStyle='dark-content'
+          backgroundColor='transparent'
+          translucent={true}
         />
-
-        <KeyboardAvoidingView
-          enabled={Platform.OS == 'ios'}
-          style={{
-            flex: 1,
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1
           }}
-          behavior="padding"
         >
-
           <View
             style={{
               flex: 3,
               justifyContent: 'flex-end',
-              alignItems: 'center'
+              alignItems: 'center',
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 5,
+              },
+              shadowOpacity: 0.36,
+              shadowRadius: 6.68,
+
+              elevation: 11,
             }}
           >
             <Image
+              style={{
+                width: 200,
+                height: 130,
+
+              }}
+              resizeMode='center'
               source={IMAGES.LOGO}
             />
           </View>
+          <Text
+            style={{
+              fontSize: 22,
+              color: '#343434',
+              textAlign: 'center',
+              paddingVertical: 20,
+              marginHorizontal: 20
+            }}
+          >
+            {`Digite seu e-mail para recuperar sua senha!`}
+          </Text>
 
           <View
             style={{
-              flex: 7,
-              justifyContent: 'center',
+              flex: 6,
+              justifyContent: 'flex-start',
               paddingHorizontal: 34
             }}
           >
             <InputBasic
-              placeholder='e-mail'
+              placeholder='E-mail'
               keyboardType='email-address'
+              autoCapitalize='none'
               value={this.state.email}
               onChangeText={email => this.setState({ email })}
-              inputBackgroundColor={COLORS.GRAY_INPUT_COLOR}
+              inputBackgroundColor='#FFF'
               inputTextColor={COLORS.PRIMARY_BUTTON_TEXT_COLOR}
-              textColor={COLORS.PRIMARY_TEXT}
+              textColor='#343434'
+              inputContainerStyle={{ height: undefined }}
+              placeholderTextColor='rgba(0,0,0,0.5)'
+            />
+
+            <View
+              style={{
+                marginVertical: 12
+              }}
             />
 
             <ButtonPrimary
-              loading={this.props.resetPasswordLoader}
-              title='enviar'
-              onPress={() => this.resetPassword()}
+              title='Recuperar'
+              onPress={this.resetPassword}
+              loading={this.props.loading}
               loadingProps={{ color: COLORS.GRAY_INPUT_COLOR, size: 'small' }}
-              buttonBackgroundColor={COLORS.PRIMARY_BUTTON_BACKGROUND_COLOR}
-              buttonTextColor={COLORS.SECONDARY_BUTTON_TEXT_COLOR}
+              buttonBackgroundColor={COLORS.PURPLE_DARK}
+              buttonTextColor='#FFF'
             />
 
           </View>
 
+
           <View
             style={{
-              flex: 2,
-              flexDirection: 'column',
+              flex: 1,
+              justifyContent: 'flex-end'
             }}>
-            <View
-              style={{
-                flex: 1,
-                justifyContent: 'flex-end'
-              }}>
-              <ButtonPrimary
-                title='cancelar'
-                onPress={() => this.props.navigation.goBack()}
-                buttonBackgroundColor={COLORS.BLACK_BUTTON_COLOR}
-                buttonTextColor={COLORS.PRIMARY_BUTTON_TEXT_COLOR}
-              />
-            </View>
+            <ButtonPrimary
+              title='Cancelar'
+              onPress={() => this.props.navigation.goBack()}
+              buttonBackgroundColor={COLORS.PURPLE_DARK}
+              buttonTextColor='#FFF'
+
+            />
           </View>
 
-        </KeyboardAvoidingView>
-
+        </ScrollView>
       </View>
     );
   }

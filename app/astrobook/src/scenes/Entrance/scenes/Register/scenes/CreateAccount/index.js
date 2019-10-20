@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
   StatusBar,
   SafeAreaView
-,
+  ,
 
 } from 'react-native';
 import Toast from 'react-native-root-toast'
@@ -37,13 +37,14 @@ class CreateAccount extends Component {
   state = {
     showPassword: false,
     name: '',
+    nickname: '',
     email: '',
     surname: '',
     password: '',
   }
 
   register = () => {
-    const { email, name, surname, password } = this.state
+    const { email, name, surname, password, nickname } = this.state
 
     Keyboard.dismiss()
 
@@ -58,13 +59,10 @@ class CreateAccount extends Component {
 
     let payload = {
       name: name,
-      surname: surname,
-      nickname: '',
+      lastName: surname,
+      nickname: nickname,
       email: email,
-      password,
-      birthDate: '',
-      gender: '',
-      phone: '',
+      password: password,
     };
 
     this.props.createAccount(payload)
@@ -72,8 +70,9 @@ class CreateAccount extends Component {
 
   render() {
     return (
-      <View  style={{
+      <View style={{
         flex: 1,
+        backgroundColor: '#dedede'
 
       }}>
         <StatusBar
@@ -81,16 +80,7 @@ class CreateAccount extends Component {
           backgroundColor='transparent'
           translucent={true}
         />
-        <Image
-          source={IMAGES.SPLASH_BACKGROUND}
-          style={{
-            width: Dimensions.get('screen').width,
-            height: Dimensions.get('screen').height,
-            backgroundColor: '#000',
-            opacity: 0.95,
-            position: 'absolute',
-          }}
-        />
+
         <MainHeader
           title='Criar conta'
           backButton={{
@@ -122,6 +112,12 @@ class CreateAccount extends Component {
             }}>
 
               <Image
+                style={{
+                  width: 200,
+                  height: 130,
+
+                }}
+                resizeMode='center'
                 source={IMAGES.LOGO}
               />
             </View>
@@ -136,10 +132,10 @@ class CreateAccount extends Component {
                   value={this.state.name}
                   keyboardType='default'
                   containerStyle={{
-                    borderColor: '#fff',
+                    borderColor: '#343434',
                   }}
-                  placeholderTextColor='rgba(255,255,255,0.8)'
-                  fontColor='#fff'
+                  placeholderTextColor='rgba(0,0,0,0.8)'
+                  fontColor='#343434'
                 />
                 <OutlineInput
                   placeholder='Sobrenome '
@@ -148,10 +144,10 @@ class CreateAccount extends Component {
                   value={this.state.surname}
                   keyboardType='default'
                   containerStyle={{
-                    borderColor: '#fff',
+                    borderColor: '#343434',
                   }}
-                  placeholderTextColor='rgba(255,255,255,0.8)'
-                  fontColor='#fff'
+                  placeholderTextColor='rgba(0,0,0,0.8)'
+                  fontColor='#343434'
                 />
                 <OutlineInput
                   placeholder='E-mail'
@@ -161,11 +157,23 @@ class CreateAccount extends Component {
                   keyboardType='email-address'
                   autoCapitalize='none'
                   containerStyle={{
-                    borderColor: '#fff',
+                    borderColor: '#343434',
                   }}
-                  placeholderTextColor='rgba(255,255,255,0.8)'
-                  fontColor='#fff'
-
+                  placeholderTextColor='rgba(0,0,0,0.8)'
+                  fontColor='#343434'
+                />
+                <OutlineInput
+                  placeholder='Nickname'
+                  maxLength={50}
+                  value={this.state.nickname}
+                  onChangeText={nickname => this.setState({ nickname })}
+                  keyboardType='default'
+                  autoCapitalize='none'
+                  containerStyle={{
+                    borderColor: '#343434',
+                  }}
+                  placeholderTextColor='rgba(0,0,0,0.8)'
+                  fontColor='#343434'
                 />
                 <OutlineInput
                   placeholder='Senha'
@@ -174,10 +182,10 @@ class CreateAccount extends Component {
                   onChangeText={password => this.setState({ password })}
                   keyboardType='default'
                   containerStyle={{
-                    borderColor: '#fff',
+                    borderColor: '#343434',
                   }}
-                  placeholderTextColor='rgba(255,255,255,0.8)'
-                  fontColor='#fff'
+                  placeholderTextColor='rgba(0,0,0,0.8)'
+                  fontColor='#343434'
                 />
 
               </View>
@@ -192,16 +200,18 @@ class CreateAccount extends Component {
 
             }}>
 
-            <ButtonPrimary
-              title='salvar'
-              onPress={this.register}
-              buttonBackgroundColor={COLORS.PRIMARY_BUTTON_BACKGROUND_COLOR}
-              buttonTextColor={COLORS.SECONDARY_BUTTON_TEXT_COLOR}
-              loading={this.props.loading}
-              loadingProps={{ color: COLORS.SECONDARY_BUTTON_TEXT_COLOR, size: 'small' }}
-            />
 
+            <ButtonPrimary
+              title='Criar'
+              loading={this.props.loading}
+              onPress={() => this.register()}
+              buttonBackgroundColor={COLORS.PURPLE_DARK}
+              buttonTextColor='#FFF'
+
+            />
           </View>
+
+
 
         </KeyboardAvoidingView>
 
@@ -210,7 +220,7 @@ class CreateAccount extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  loading: state.user.loading
+  loading: state.user.loadingCreateAccount
 });
 
 const mapDispatchToProps = (dispatch) => ({

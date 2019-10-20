@@ -21,7 +21,7 @@ export default class Comment extends Component {
     render() {
 
         const { name, created_at, message, profile_photo } = this.props
-        let aux = moment(created_at.toDate())
+        let aux = moment(created_at)
         let created_at_formated = aux.fromNow().replace('há ', '')
         return (
             <View style={{
@@ -32,14 +32,16 @@ export default class Comment extends Component {
                 flexDirection: 'row'
             }}>
 
-                <FitImage
+                <Image
                     style={{
                         width: 40,
                         height: 40,
                         borderRadius: 20,
+                        borderWidth: 0.5,
+                        borderColor: '#343434'
                     }}
-                    source={{ uri: profile_phot }}
-                    resizeMode='contain'
+                    source={{ uri: profile_photo }}
+                    resizeMode='cover'
                 />
                 <View
                     style={{

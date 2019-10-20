@@ -28,6 +28,7 @@
 		27541FB4235C223B00985D29 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27541FA4235C223B00985D29 /* EvilIcons.ttf */; };
 		27541FB5235C223B00985D29 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27541FA5235C223B00985D29 /* SimpleLineIcons.ttf */; };
 		27541FB6235C223B00985D29 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 27541FA6235C223B00985D29 /* MaterialIcons.ttf */; };
+		27541FB7235C84F100985D29 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB61A68108700A75B9A /* Info.plist */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -407,6 +408,7 @@
 			files = (
 				27541FAF235C223B00985D29 /* Ionicons.ttf in Resources */,
 				27541FB2235C223B00985D29 /* FontAwesome.ttf in Resources */,
+				27541FB7235C84F100985D29 /* Info.plist in Resources */,
 				27541FA7235C223B00985D29 /* Fontisto.ttf in Resources */,
 				27541FAC235C223B00985D29 /* MaterialCommunityIcons.ttf in Resources */,
 				27541FA8235C223B00985D29 /* Octicons.ttf in Resources */,

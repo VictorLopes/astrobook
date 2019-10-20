@@ -18,7 +18,7 @@ import FitImage from 'react-native-fit-image';
 
 class Splash extends Component {
     componentDidMount() {
-        setTimeout(() => this._redirectTo('Main'), 1500);
+        setTimeout(() => this._redirectTo('Entrance'), 1500);
     }
 
 
