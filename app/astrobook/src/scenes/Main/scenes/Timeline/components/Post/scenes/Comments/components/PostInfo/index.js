@@ -119,7 +119,7 @@ export default class PostInfo extends Component {
                         marginTop: 8,
                         flex: 1,
                         color: '#B9B9B9',
-                        fontSize: 12,
+                        fontSize: 15,
                         fontWeight: '400',
                         textAlign: 'left'
                     }}>

@@ -82,15 +82,14 @@ class Comments extends Component {
 
         this.didFocusFunctions();
     }
-
     didFocusFunctions() {
     }
     _sendComment = (message) => {
         let comments = this.state.currentPost.comments
         let comment = {
             message,
-            created_at: moment('2019-09-10T08:00:00'),
-            name: this.props.user.name,
+            created_at: moment(),
+            name: this.props.user.name + ' Lima Gonçalves',
             profile_photo: this.props.user.profilePhoto,
         }
         comments.push(comment)

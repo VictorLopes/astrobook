@@ -82,7 +82,7 @@ function* createAccount({ payload }) {
             title: 'USER USER_CREATE_ACCOUNT_TRIGGER '
         })
         if (response.data) {
-            Alert.alert('Erro', 'Cadastro Realizado com sucesso!')
+            Alert.alert('Cadastro Realizado com sucesso!')
             yield put(StackActions.pop())
 
         } else {
