@@ -2,9 +2,9 @@ var PublicationSchema = require('../schemas/Publication.schema');
 
 module.exports = class Publication {
 
-    get(id) {
+    get() {
         return new Promise((resolve, reject) => {
-            PublicationSchema.findOne().exec(function (err, result) {
+            PublicationSchema.find().exec(function (err, result) {
                 console.log(result);
                 if (err) reject('Erro during login!');
                 resolve(result !== null && Object.keys(result).length > 0);

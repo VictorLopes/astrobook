@@ -30,7 +30,7 @@ router.post('/insert', async (req, res, next) => {
 });
 
 /**
- * ENDPOINT: localhost:3000/users/post
+ * ENDPOINT: localhost:3000/users/login
  * POST: Makes login. (nickname or email and password)
  * @example
  {

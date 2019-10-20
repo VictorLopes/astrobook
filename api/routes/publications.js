@@ -5,8 +5,8 @@ var PublicationModel = require('../model/Publication_model');
 var publication = new PublicationModel();
 
 router.get('/', async(req, res, next) => {
-  publication.get(1);
-  res.json('aqui');
+  let result = publication.get(1);
+  res.json(result);
 });
 
 /**
