@@ -8,6 +8,7 @@ import { Icon } from 'react-native-elements'
 // Scenes
 import Home from './scenes/Timeline'
 import Settings from './scenes/Settings'
+import Following from './scenes/Following'
 import Publish from './scenes/Publish'
 import EditProfile from '../EditProfile'
 
@@ -40,7 +41,7 @@ export default createBottomTabNavigator(
             })
         },
         Seguindo: {
-            screen: Home,
+            screen: Following,
             navigationOptions: ({ navigation }) => ({
                 tabBarIcon: ({ focused, tintColor }) => (
                     // <View>

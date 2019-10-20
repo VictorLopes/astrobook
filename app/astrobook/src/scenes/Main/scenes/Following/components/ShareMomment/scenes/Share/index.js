@@ -37,7 +37,7 @@ import COLORS from '@constants/colors'
 import FitImage from 'react-native-fit-image';
 
 
-class Publish extends Component {
+class Share extends Component {
 
     constructor(props) {
         super(props)
@@ -121,19 +121,16 @@ class Publish extends Component {
     render() {
         return (
             <React.Fragment>
-                <MainHeader
-                    title='Publicar'
-
-                />
                 <ScrollView
                     style={{
                         backgroundColor: COLORS.MENU_BACKGROUND
                     }}
-                    contentContainerStyle={{
-                        paddingTop: 32
-                    }}
                 >
-                    {/* <AvatarProfile
+                    <MainHeader
+                        title='Compartilhar'
+                        backButton
+                    />
+                    <AvatarProfile
                         containerStyle={{
                             margin: 0,
                             padding: 12
@@ -142,21 +139,23 @@ class Publish extends Component {
                         source={this.state.user.photo ? { uri: this.state.user.photo } : false}
                         onPress={() => null}
                         showRightIcon={false}
-                    /> */}
-                    <Text
-                        style={{
-                            fontSize: 18,
-                            color: '#343434',
-                            paddingLeft: 12,
-                            paddingBottom: 12,
-                            // marginHorizontal: 12,
-                            fontWeight: '300',
-                            textAlign: 'left'
-                        }}
-                    >
-                        {`Este é o local para você publicar suas AstroFotografias.\n\nAconselhamos que detalhe bem a descrição com informações como:\n\n » Tipo de equipamento usado,\n » Data e hora,\n » Etc `}
-                    </Text>
+                    />
+                    {
+                        (this.state.checkin) && (
+                            <Text
+                                style={{
+                                    fontSize: 16,
+                                    color: 'rgba(0, 0, 0, 0.8)',
+                                    paddingLeft: 12,
+                                    paddingBottom: 12,
+                                    fontWeight: '500'
+                                }}
+                            >
+                                {`Fez check-in em ${this.state.checkin.name}`}
+                            </Text>
 
+                        )
+                    }
                     <View
                         style={{
                             paddingHorizontal: 12
@@ -193,43 +192,7 @@ class Publish extends Component {
                             autoCorrect={true}
                             multiline={true}
                             maxLength={2200}
-                            placeholder='Título da publicação'
-                            placeholderTextColor='rgba(162, 162, 162, 1)'
-                            underlineColorAndroid='rgba(0,0,0,0)'
-                        />
-                        <Input
-                            autoCapitalize='none'
-                            inputStyle={{
-                                color: '#383A3C',
-                                fontWeight: '500',
-                                fontSize: 16,
-                                paddingTop: 10,
-                                paddingBottom: 10
-                            }}
-                            inputContainerStyle={{
-                                justifyContent: 'center',
-                                flex: 1,
-                                borderColor: 'rgba(255,255,255,0)',
-                                maxHeight: 180,
-                            }}
-                            value={this.state.history}
-                            containerStyle={{
-                                shadowColor: '#455B63',
-                                shadowRadius: 3,
-
-                                shadowOpacity: 0.2,
-                                shadowOffset: { width: 0, height: 2 },
-                                elevation: 2,
-                                flex: 1,
-                                backgroundColor: '#fff',
-                                marginVertical: 6,
-                                marginTop: 12,
-                            }}
-                            onChangeText={history => this.setState({ history })}
-                            autoCorrect={true}
-                            multiline={true}
-                            maxLength={2200}
-                            placeholder='Descrição/História'
+                            placeholder='Compartilhe seu momento'
                             placeholderTextColor='rgba(162, 162, 162, 1)'
                             underlineColorAndroid='rgba(0,0,0,0)'
                         />
@@ -264,7 +227,26 @@ class Publish extends Component {
                                 Foto
                         </Text>
                         </TouchableOpacity>
-
+                        <TouchableOpacity
+                            onPress={() => this.openSearchModal()}
+                            style={{
+                                flexDirection: 'row',
+                                paddingLeft: 20
+                            }}
+                        >
+                            <Icon
+                                name='map-marker'
+                                size={20}
+                                color='rgba(0, 0, 0, 0.7)'
+                            />
+                            <Text style={{
+                                fontSize: 14,
+                                color: 'rgba(0, 0, 0, 0.7)',
+                                paddingLeft: 8
+                            }}>
+                                Check-in
+                        </Text>
+                        </TouchableOpacity>
                     </View>
                     <View
                         style={{
@@ -292,6 +274,7 @@ class Publish extends Component {
                                             shadowOffset: { width: 1, height: 2 },
                                             elevation: 3,
                                         }}
+
                                     >
                                         <TouchableOpacity
                                             onPress={() => this._removeImage(i)}
@@ -356,7 +339,7 @@ class Publish extends Component {
                         />
                     </View>
                 </View>
-            </React.Fragment >
+            </React.Fragment>
 
         )
     }
@@ -380,4 +363,4 @@ const mapDispatchToProps = dispatch => ({
     },
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(Publish));
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(Share));

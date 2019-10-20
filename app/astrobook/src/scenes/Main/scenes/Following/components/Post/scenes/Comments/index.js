@@ -38,7 +38,6 @@ import COLORS from '@constants/colors'
 import FitImage from 'react-native-fit-image';
 import PostInfo from './components/PostInfo';
 import Comment from './components/Comment';
-import moment from 'moment';
 
 
 
@@ -86,21 +85,18 @@ class Comments extends Component {
     didFocusFunctions() {
     }
     _sendComment = (message) => {
-        let comments = this.state.currentPost.comments
+
         let comment = {
             message,
-            created_at: moment('2019-09-10T08:00:00'),
-            name: this.props.user.name,
-            profile_photo: this.props.user.profilePhoto,
+            created_at: '',
+            name: this.state.user.full_name,
+            profile_photo: this.state.user.profile_photo,
         }
-        comments.push(comment)
-        this.scrollView.scrollToEnd()
-        this.setState({
-            currentPost: {
-                comments
-            },
-            commentAdding: ''
-        })
+        this.props.addCommentInPost(comment)
+
+        this.setState({ commentAdding: '' })
+
+
     }
 
     render() {

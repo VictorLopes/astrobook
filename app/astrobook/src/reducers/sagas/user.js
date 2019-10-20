@@ -69,7 +69,7 @@ function* createAccount({ payload }) {
         });
         //Get all people that the user that is logged in is following
         let response = yield call(callApi, {
-            endpoint: '/users/login',
+            endpoint: '/users/insert',
             method: 'POST',
             data: {
                 name: payload.name,
@@ -77,13 +77,13 @@ function* createAccount({ payload }) {
                 nickname: payload.nickname,
                 email: payload.email,
                 password: payload.password,
-                profilePhoto: null
+                profilePhoto: 'https://cdn.business2community.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640.png'
             },
             title: 'USER USER_CREATE_ACCOUNT_TRIGGER '
         })
         if (response.data) {
             Alert.alert('Erro', 'Cadastro Realizado com sucesso!')
-            yield put(NavigationActions.goBack())
+            yield put(StackActions.pop())
 
         } else {
             Alert.alert('Erro', 'Ocorreu um erro no cadastro!')
