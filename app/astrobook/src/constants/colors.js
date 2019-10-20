@@ -1,6 +1,7 @@
 export default {
 
     PURPLE: '#985bd9',
+    PURPLE_DARK: '#200845',
     BLUE_DEFAULT: '#20939e',
 
     // General

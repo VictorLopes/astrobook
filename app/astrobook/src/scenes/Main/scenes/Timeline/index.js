@@ -37,22 +37,6 @@ class Timeline extends Component {
       initiated: false,
       user: {},
       clubs: [
-        // {
-        //   id: 1,
-        //   icon: IMAGES.FIELD_LOGO,
-        //   name: 'Damha Golf Club ',
-        //   location: 'São Carlos, SP',
-        //   distance: '65 km',
-        //   rating: '4.9'
-        // },
-        // {
-        //   id: 2,
-        //   icon: IMAGES.FIELD_LOGO,
-        //   name: 'Damha Golf Club ',
-        //   location: 'São Carlos, SP',
-        //   distance: '65 km',
-        //   rating: '4.9'
-        // },
       ],
       posts: []
     }
@@ -118,12 +102,9 @@ class Timeline extends Component {
               activeOpacity={0.8}
               onPress={() => this.props.navigation.navigate('TimelineFinder')}
             >
-              <Icon
-                type='material-icon'
-                name='search'
-                color={COLORS.PRIMARY_HEADER_TEXT_COLOR}
-                size={26}
-              />
+              {/* <Icon
+
+              /> */}
             </TouchableOpacity>
           )}
         />

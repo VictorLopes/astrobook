@@ -1,5 +1,5 @@
 import React from 'react';
-import { YellowBox, Image } from 'react-native';
+import { YellowBox, Image, View } from 'react-native';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs'
 
 import { Icon } from 'react-native-elements'
@@ -21,29 +21,65 @@ const TabBarComponent = props => <BottomTabBar {...props} />;
 export default createBottomTabNavigator(
     {
 
-        Home: {
+        Timeline: {
             screen: Home,
             navigationOptions: ({ navigation }) => ({
                 tabBarIcon: ({ focused, tintColor }) => (
+                    // <View>
+
+                    // </View>
                     <Icon
+                        type='font-awesome'
                         name='rocket'
-                        color=''
-                        size={30}
+                        color={tintColor}
+                        size={34}
                     />
                 )
             })
         },
+        Amigos: {
+            screen: Home,
+            navigationOptions: ({ navigation }) => ({
+                tabBarIcon: ({ focused, tintColor }) => (
+                    // <View>
 
-        Settings: {
+                    // </View>
+                    <Icon
+
+                        name='people'
+                        color={tintColor}
+                        size={34}
+                    />
+                )
+            })
+        },
+        Camera: {
+            screen: Home,
+            navigationOptions: ({ navigation }) => ({
+                tabBarIcon: ({ focused, tintColor }) => (
+                    // <View>
+
+                    // </View>
+                    <Icon
+                        type='antdesign'
+                        name='camera'
+                        color={tintColor}
+                        size={34}
+                    />
+                )
+            })
+        },
+        Perfil: {
             screen: Settings,
             navigationOptions: ({ navigation }) => ({
                 tabBarVisible: false,
                 tabBarIcon: ({ focused, tintColor }) => (
+
                     <Icon
                         // type='material-icon'
                         name='menu'
                         color={tintColor}
-                        size={25}
+                        size={34}
                     />
                 )
             })
@@ -51,17 +87,16 @@ export default createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-
-            showLabel: false,
-            showIcon: true,
-            activeTintColor: COLORS.FOOTER_BUTTON_ACTIVE_COLOR,
-            inactiveTintColor: COLORS.FOOTER_BUTTON_INACTIVE_COLOR,
-            inactiveBackgroundColor: COLORS.FOOTER_BUTTON_INACTIVE_BACKGROUND,
+            activeTintColor: '#FFF',
+            inactiveTintColor: '#343434',
+            inactiveBackgroundColor: '#FFF',
             style: {
-                backgroundColor: COLORS.FOOTER_BUTTON_ACTIVE_BACKGROUND,
-                elevation: 4,
-            }
+                height: 60,
+                padding: 0,
+                backgroundColor: COLORS.PURPLE,
+            },
         },
-        initialRouteName: 'Home'
+
+        initialRouteName: 'Timeline'
     }
 );

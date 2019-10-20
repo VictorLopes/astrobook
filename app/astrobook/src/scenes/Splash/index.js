@@ -18,21 +18,12 @@ import FitImage from 'react-native-fit-image';
 
 class Splash extends Component {
     componentDidMount() {
+        setTimeout(() => this._redirectTo('Main'), 1500);
     }
 
-    componentWillUnmount() {
-        // Kill listener
-        if (this.unsubscriber)
-            this.unsubscriber();
-    }
 
     _redirectTo = (scene) => {
         this.props.navigation.replace(scene);
-    }
-
-    _onAuthChange = (user) => {
-
-        setTimeout(() => this._redirectTo('Main'), 1500);
     }
 
     render() {
@@ -40,7 +31,7 @@ class Splash extends Component {
             <View
                 style={{
                     flex: 1,
-                    backgroundColor: COLORS.PURPLE,
+                    backgroundColor: COLORS.PURPLE_DARK,
                     alignItems: 'center',
                     justifyContent: 'center'
                 }}>
@@ -51,16 +42,12 @@ class Splash extends Component {
                     barStyle='light-content'
                 />
 
-                <FitImage
+                <Image
                     source={IMAGES.ICON_LOGO}
                     style={{
-                        width: 68,
-                        height: 68,
-                        borderRadius: 34,
-                        borderColor: '#fff',
-                        borderWidth: 2,
+                        width: 180,
+                        height: 180
                     }}
-                    borderRadius={34}
                 />
 
 
