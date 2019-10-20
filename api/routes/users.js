@@ -5,8 +5,8 @@ var UserModel = require('../model/User.model');
 var user = new UserModel();
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('/');
+router.get('/', async function (req, res, next) {
+  res.json('');
 });
 
 

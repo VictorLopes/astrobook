@@ -19,7 +19,8 @@ module.exports = class User {
             UserSchema.findOne().and({ 'password': password }).or([{ 'nickname': username }, { 'email': username }])
                 .exec(function (err, result) {
                     if (err) reject('Erro during login!');
-                    resolve(result !== null && Object.keys(result).length > 0);
+                    console.log(result);
+                    resolve(result !== null && Object.keys(result).length > 0 && result);
                 });
         });
     }
