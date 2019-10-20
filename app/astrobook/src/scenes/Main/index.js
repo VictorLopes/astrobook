@@ -8,6 +8,8 @@ import { Icon } from 'react-native-elements'
 // Scenes
 import Home from './scenes/Timeline'
 import Settings from './scenes/Settings'
+import Publish from './scenes/Publish'
+import EditProfile from '../EditProfile'
 
 // Constants
 import COLORS from '@constants/colors'
@@ -37,7 +39,7 @@ export default createBottomTabNavigator(
                 )
             })
         },
-        Amigos: {
+        Seguindo: {
             screen: Home,
             navigationOptions: ({ navigation }) => ({
                 tabBarIcon: ({ focused, tintColor }) => (
@@ -53,8 +55,8 @@ export default createBottomTabNavigator(
                 )
             })
         },
-        Camera: {
-            screen: Home,
+        Publicar: {
+            screen: Publish,
             navigationOptions: ({ navigation }) => ({
                 tabBarIcon: ({ focused, tintColor }) => (
                     // <View>
@@ -70,16 +72,16 @@ export default createBottomTabNavigator(
             })
         },
         Perfil: {
-            screen: Settings,
+            screen: EditProfile,
             navigationOptions: ({ navigation }) => ({
                 tabBarVisible: false,
                 tabBarIcon: ({ focused, tintColor }) => (
 
                     <Icon
-                        // type='material-icon'
-                        name='menu'
+                        type='antdesign'
+                        name='profile'
                         color={tintColor}
-                        size={34}
+                        size={30}
                     />
                 )
             })
@@ -93,7 +95,7 @@ export default createBottomTabNavigator(
             style: {
                 height: 60,
                 padding: 0,
-                backgroundColor: COLORS.PURPLE,
+                backgroundColor: COLORS.PURPLE_DARK,
             },
         },
 

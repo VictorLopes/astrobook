@@ -68,8 +68,8 @@ class ProfileView extends Component {
 
     didFocusFunctions() {
         //usuario que esta sendo visto
-        this.props.getFollowersById(this.props.user.user_uid)
-        this.props.getFollowingById(this.props.user.user_uid)
+        // this.props.getFollowersById(this.props.user.user_uid)
+        // this.props.getFollowingById(this.props.user.user_uid)
     }
 
     componentWillUnmount() {
@@ -82,11 +82,11 @@ class ProfileView extends Component {
         //Fazer Paginacao
     }
     _follow(user_following_uid, user_uid) {
-        if (this.props.userIsFollowed) {
-            this.props.unfollow(this.props.usersRelationshipUid, user_following_uid, user_uid)
-        } else {
-            this.props.follow(user_following_uid, user_uid)
-        }
+        // if (this.props.userIsFollowed) {
+        //     this.props.unfollow(this.props.usersRelationshipUid, user_following_uid, user_uid)
+        // } else {
+        //     this.props.follow(user_following_uid, user_uid)
+        // }
     }
 
     render() {
@@ -140,7 +140,7 @@ class ProfileView extends Component {
                     }}>
 
                         <OutlineButton
-                            onPress={() => this._follow(this.props.user_following_uid, this.props.user.user_uid)}
+                            // onPress={() => this._follow(this.props.user_following_uid, this.props.user.user_uid)}
                             loading={this.props.actionFollowLoading}
                             style={{
                                 flex: 1,
@@ -169,7 +169,7 @@ class ProfileView extends Component {
 
 const mapStateToProps = state => {
     return {
-        user_following_uid: state.user.data.user_uid,
+        // user_following_uid: state.user.data.user_uid,
         user: state.user.userProfileView,
         clubs: state.user.clubsProfileView,
         clubsProfileLoading: state.user.clubsProfileLoading,

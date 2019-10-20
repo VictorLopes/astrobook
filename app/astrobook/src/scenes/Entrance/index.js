@@ -13,7 +13,8 @@ import {
   ImageBackground,
   Dimensions,
   SafeAreaView,
-  
+  ScrollView,
+
 } from 'react-native';
 
 import Toast from 'react-native-root-toast'
@@ -43,44 +44,45 @@ class Entrance extends Component {
       return Toast.show('Digite sua senha')
 
     Keyboard.dismiss()
-    this.props.login({ email, password });
+    this.props.login({ email, password })
   }
 
   render() {
     return (
-      <SafeAreaView  style={{ flex: 1, backgroundColor:COLORS.DEEP_GRAY_BACKGROUND }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#dedede' }}>
         <StatusBar
-          barStyle='light-content'
+          barStyle='dark-content'
           backgroundColor='transparent'
           translucent={true}
         />
-        <ImageBackground
-          source={IMAGES.SPLASH_BACKGROUND}
-          style={{
-            width: Dimensions.get('screen').width,
-            height: '100%',
-            backgroundColor: '#000',
-            opacity: 0.95,
-            position: 'absolute',
+        <ScrollView
+          contentContainerStyle={{
+            flex: 1
           }}
-        />
-
-        <KeyboardAvoidingView
-          enabled={Platform.OS == 'ios'}
-          style={{
-            flex: 1,
-          }}
-          behavior="padding"
         >
-
           <View
             style={{
               flex: 3,
               justifyContent: 'flex-end',
-              alignItems: 'center'
+              alignItems: 'center',
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 5,
+              },
+              shadowOpacity: 0.36,
+              shadowRadius: 6.68,
+
+              elevation: 11,
             }}
           >
             <Image
+              style={{
+                width: 200,
+                height: 130,
+
+              }}
+              resizeMode='center'
               source={IMAGES.LOGO}
             />
           </View>
@@ -93,35 +95,44 @@ class Entrance extends Component {
             }}
           >
             <InputBasic
-              placeholder='e-mail'
+              placeholder='E-mail'
               keyboardType='email-address'
               autoCapitalize='none'
               value={this.state.email}
               onChangeText={email => this.setState({ email })}
-              inputBackgroundColor={COLORS.GRAY_INPUT_COLOR}
+              inputBackgroundColor='#FFF'
               inputTextColor={COLORS.PRIMARY_BUTTON_TEXT_COLOR}
-              textColor={COLORS.PRIMARY_TEXT}
+              textColor='#343434'
               inputContainerStyle={{ height: undefined }}
+              placeholderTextColor='rgba(0,0,0,0.5)'
             />
 
             <InputBasic
-              placeholder='senha'
+              placeholder='Senha'
               secureTextEntry
               value={this.state.password}
               onChangeText={password => this.setState({ password })}
-              inputBackgroundColor={COLORS.BLACK_INPUT_COLOR}
+              inputBackgroundColor='#FFF'
               inputTextColor={COLORS.PRIMARY_INPUT_TEXT_COLOR}
-              textColor={COLORS.PRIMARY_TEXT}
+              textColor='#343434'
               inputContainerStyle={{ height: undefined }}
+              placeholderTextColor='rgba(0,0,0,0.5)'
+            />
+
+
+            <View
+              style={{
+                marginVertical: 12
+              }}
             />
 
             <ButtonPrimary
-              title='entrar'
+              title='ENTRAR'
               onPress={this.login}
               loading={this.props.loading}
-              loadingProps={{ color: COLORS.GRAY_INPUT_COLOR, size: 'small' }}
-              buttonBackgroundColor={COLORS.PRIMARY_BUTTON_BACKGROUND_COLOR}
-              buttonTextColor={COLORS.SECONDARY_BUTTON_TEXT_COLOR}
+              loadingProps={{ color: '#FFF', size: 'small' }}
+              buttonBackgroundColor={COLORS.PURPLE_DARK}
+              buttonTextColor='#FFF'
             />
 
           </View>
@@ -148,7 +159,7 @@ class Entrance extends Component {
                   alignItems: 'flex-start',
                 }}
                 title='Criar conta'
-                buttonTextColor={COLORS.WHITE_BUTTON_TEXT_COLOR}
+                buttonTextColor={COLORS.PURPLE_DARK}
                 onPress={() => this.props.navigation.navigate('CreateAccount')}
               />
               <ButtonLink
@@ -160,7 +171,7 @@ class Entrance extends Component {
                   paddingRight: 4
                 }}
                 title='Esqueci a senha'
-                buttonTextColor={COLORS.WHITE_BUTTON_TEXT_COLOR}
+                buttonTextColor={COLORS.PURPLE_DARK}
                 onPress={() => this.props.navigation.navigate('EntranceForgotPassword')}
               />
             </View>
@@ -171,17 +182,15 @@ class Entrance extends Component {
                 justifyContent: 'flex-end'
               }}>
               <ButtonPrimary
-                title='entrar com o facebook'
+                title='Entrar com o Facebook'
                 onPress={this.props.loginWithFacebook}
-                buttonBackgroundColor={COLORS.BLACK_BUTTON_COLOR}
-                buttonTextColor={COLORS.PRIMARY_BUTTON_TEXT_COLOR}
+                buttonBackgroundColor={COLORS.PURPLE_DARK}
+                buttonTextColor='#FFF'
                 leftIcon={IMAGES.FACEBOOK_ICON}
               />
             </View>
           </View>
-
-        </KeyboardAvoidingView>
-
+        </ScrollView>
       </SafeAreaView>
     );
   }

@@ -38,17 +38,17 @@ class Post extends Component {
     componentDidMount() {
         let { item } = this.props
         let likes = item.users_uid_that_liked
-        if (likes && likes.includes(this.props.user.user_uid)) {
-            this.setState({ isLiked: true })
-        } else {
-            this.setState({ isLiked: false })
-        }
+        // if (likes && likes.includes(this.props.user.user_uid)) {
+        //     this.setState({ isLiked: true })
+        // } else {
+        //     this.setState({ isLiked: false })
+        // }
     }
 
     _like = () => {
         if (this.state.isLiked) {
             let payload = {
-                user_uid: this.props.user.user_uid,
+                // user_uid: this.props.user.user_uid,
                 post_id: this.props.item.id
             }
             this.props.unLike(payload)
@@ -56,7 +56,7 @@ class Post extends Component {
 
         } else {
             let payload = {
-                user_uid: this.props.user.user_uid,
+                // user_uid: this.props.user.user_uid,
                 post_id: this.props.item.id
             }
             this.props.like(payload)

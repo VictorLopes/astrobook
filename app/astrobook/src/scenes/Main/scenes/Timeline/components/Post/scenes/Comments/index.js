@@ -9,7 +9,8 @@ import {
     Dimensions,
     TouchableOpacity,
     KeyboardAvoidingView,
-    ActivityIndicator
+    ActivityIndicator,
+    Image
 } from 'react-native'
 const { width, height } = Dimensions.get("screen");
 
@@ -48,16 +49,26 @@ class Comments extends Component {
         this.state = {
             currentPost: {},
             commentAdding: '',
-            commentSubmited: {}
+            commentSubmited: {},
+            user: {
+                full_name: '',
+                profile_photo: ''
+            }
         }
 
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.user)
-            state.user = props.user
-        if (props.currentPost)
-            state.currentPost = props.currentPost
+        let item = props.navigation.getParam('item')
+        console.log('ITEM >>>', item)
+        if (item.user)
+            state.user = {
+                full_name: item.user_name,
+                profile_photo: item.user_photo
+            }
+        if (item)
+            // console.log('ITEM', props.navigation.getParam('item'))
+            state.currentPost = item
         return state;
     }
 
@@ -78,8 +89,8 @@ class Comments extends Component {
         let comment = {
             message,
             created_at: '',
-            name: this.props.user.full_name,
-            profile_photo: this.props.user.photo,
+            name: this.state.user.full_name,
+            profile_photo: this.state.user.profile_photo,
         }
         this.props.addCommentInPost(comment)
 
@@ -97,6 +108,10 @@ class Comments extends Component {
                 behavior="padding"
                 enabled
             >
+                <MainHeader
+                    title='Comentários'
+                    backButton
+                />
                 <ScrollView
                     ref={ref => this.scrollView = ref}
 
@@ -106,18 +121,14 @@ class Comments extends Component {
                         }
                     }}
                 >
-                    <MainHeader
-                        title='Comentários'
-                        backButton
-                    />
                     <PostInfo
-                        name={this.props.currentPost.user_name}
-                        profilePhoto={this.props.currentPost.user_photo}
-                        time={this.props.currentPost.created_at_formated}
-                        message={this.props.currentPost.comment}
+                        name={this.state.currentPost.user_name}
+                        profilePhoto={this.state.currentPost.user_photo}
+                        time={this.state.currentPost.created_at_formated}
+                        message={this.state.currentPost.comment}
                         isLiked={false}
-                        check_in={(this.props.currentPost.check_in) ? this.props.currentPost.check_in.name : ''}
-                        photos={this.props.currentPost.photos}
+                        check_in={(this.state.currentPost.check_in) ? this.state.currentPost.check_in.name : ''}
+                        photos={this.state.currentPost.photos}
                     />
                     {
                         (this.state.currentPost.comments) ?
@@ -169,7 +180,7 @@ class Comments extends Component {
                             alignItems: 'center',
                         }}
                     >
-                        <FitImage
+                        <Image
                             style={{
                                 width: 40,
                                 height: 40,
@@ -177,7 +188,7 @@ class Comments extends Component {
                                 borderColor: 'rgba(0,0,0,0.5)',
                                 borderWidth: 0.5
                             }}
-                            source={{ uri: this.props.user.photo }}
+                            source={{ uri: this.props.user.profilePhoto }}
                             resizeMode='contain'
                         />
                     </View>
@@ -188,7 +199,6 @@ class Comments extends Component {
                         }}
                     >
                         <Input
-
                             autoCapitalize='none'
                             inputStyle={{
                                 color: '#383A3C',
@@ -274,7 +284,7 @@ class Comments extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user.data,
+        user: state.user.user,
         currentPost: state.user.currentPost,
         commentSuccess: state.user.commentSuccess,
         commentLoader: state.user.commentLoader,

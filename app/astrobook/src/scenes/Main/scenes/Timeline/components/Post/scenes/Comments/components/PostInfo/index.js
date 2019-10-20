@@ -46,14 +46,16 @@ export default class PostInfo extends Component {
                                 borderRadius: 20.5,
                             }}
                         >
-                            <FitImage
+                            <Image
                                 style={{
-                                    width: 41,
-                                    height: 41,
-                                    borderRadius: 20.5,
+                                    width: 40,
+                                    height: 40,
+                                    borderRadius: 20,
+                                    borderWidth: 0.5,
+                                    borderColor: '#343434'
                                 }}
                                 source={{ uri: profilePhoto }}
-                                resizeMode='contain'
+                                resizeMode='cover'
                             />
                         </View>
 
@@ -163,7 +165,7 @@ export default class PostInfo extends Component {
                                                 width: '100%',
                                                 height: 200
                                             }}
-                                            source={{ uri: photo }}
+                                            source={{ uri: photo.url }}
                                             resizeMode='cover'
 
                                         />

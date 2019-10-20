@@ -44,7 +44,7 @@ MainHeader = ({ hasNext, hasPrev, backButton, styleTitle, callback, ...props }) 
                     if (backButton.onPress)
                         return backButton.onPress()
 
-                    return props.navigation.goBack()
+                    props.navigation.goBack()
                 }}
                 style={{
                     flexDirection: 'row',
@@ -55,7 +55,7 @@ MainHeader = ({ hasNext, hasPrev, backButton, styleTitle, callback, ...props }) 
                 <Icon
                     type='material-icon'
                     name='arrow-back'
-                    color={COLORS.PRIMARY_HEADER_TEXT_COLOR}
+                    color='#FFF'
                     size={26}
                 />
                 <Text style={[styles.button, { fontWeight: 'normal' }]}>
@@ -76,7 +76,7 @@ MainHeader = ({ hasNext, hasPrev, backButton, styleTitle, callback, ...props }) 
                     height: 88
                 }}
                 {...props}
-                backgroundColor={COLORS.PRIMARY_HEADER_BACKGROUND}
+                backgroundColor={COLORS.PURPLE_DARK}
                 placement='center'
                 centerComponent={{
                     text: props.title,
@@ -93,10 +93,10 @@ MainHeader = ({ hasNext, hasPrev, backButton, styleTitle, callback, ...props }) 
                 }}
                 rightComponent={props.rightComponent}
                 statusBarProps={{
-                  translucent: true,
-                  barStyle: 'default',
-                  backgroundColor: COLORS.PRIMARY_HEADER_BACKGROUND,
-                  hidden: false
+                    translucent: true,
+                    barStyle: 'light-content',
+                    backgroundColor: COLORS.PRIMARY_HEADER_BACKGROUND,
+                    hidden: false
                 }}
             />
         </View>
@@ -107,8 +107,9 @@ export default withNavigation(MainHeader)
 
 const styles = StyleSheet.create({
     title: {
-        fontSize: 24,
-        color: 'black'
+        fontSize: 30,
+        fontWeight: '500',
+        color: 'white'
     },
     button: {
         fontSize: 24,
